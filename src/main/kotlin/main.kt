@@ -1,11 +1,12 @@
-import bytebank.Account
+import bytebank.account.Account
 import bytebank.account.SalaryAccount
+import bytebank.account.SimpleAccount
 
 fun main() {
     println("Bem vindos ao Bytebank!!!")
 
     // Creating accounts
-    val andre: Account = Account("Andre", 1000);
+    val andre: Account = SimpleAccount("Andre", 1000);
     val thiago: Account = SalaryAccount("Thiago", 1001);
     println("Conta de ${andre.ownerName} criada com sucesso")
     println("Conta de ${thiago.ownerName} criada com sucesso")

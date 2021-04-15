@@ -1,6 +1,6 @@
-package bytebank
+package bytebank.account
 
-open class Account(
+abstract class Account(
     var ownerName: String,
     val numberAccount: Int,
 ) {
@@ -13,7 +13,7 @@ open class Account(
 
     open fun withDraw(value: Double): Boolean {
         if (balance >= value) {
-            balance -= (value + 0.10)
+            balance -= value
             return true
         }
         return false
