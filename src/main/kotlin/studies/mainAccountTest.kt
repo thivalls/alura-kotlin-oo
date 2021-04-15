@@ -1,3 +1,5 @@
+import bytebank.Account
+
 fun main() {
     println("Bem vindo ao nosso banco")
     val account1 = Account("Thiago", 1)

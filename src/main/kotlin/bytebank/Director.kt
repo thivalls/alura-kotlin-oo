@@ -1,10 +1,12 @@
+package bytebank
+
 class Director(
     name: String,
     document: String,
     salary: Double,
     val password: String,
     val plr: Double
-): Collaborator (name, document, salary) {
+): Collaborator(name, document, salary) {
     override fun bonificacao(): Double {
         return super.bonificacao() + salary + calcPlr()
     }

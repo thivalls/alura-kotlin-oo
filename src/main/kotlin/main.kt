@@ -1,3 +1,8 @@
+import bytebank.Director
+import bytebank.Employee
+import bytebank.Manager
+import bytebank.calculator.Calculator
+
 fun main() {
     val thiago = Director("Thiago", "323232", 5000.0, "zup", 1.3)
     println("Funcionário ${thiago.name}")
@@ -25,4 +30,12 @@ fun main() {
     val amanda = Employee("Amanda", "323232", 2000.0)
     println("Funcionário ${amanda.name}")
     println("Bonificação de : ${amanda.bonificacao()}")
+
+    println("_______________________________________")
+    println("Calculando total de gastos com premiações entre funcionarios")
+    var calculator = Calculator();
+    calculator.regiter(thiago)
+    calculator.regiter(andre)
+    calculator.regiter(amanda)
+    println(calculator.total)
 }

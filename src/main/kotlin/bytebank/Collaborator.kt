@@ -1,3 +1,5 @@
+package bytebank
+
 open class Collaborator(
     val name: String,
     val document: String,

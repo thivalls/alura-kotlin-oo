@@ -1,3 +1,5 @@
+package bytebank
+
 class Employee(
     name: String,
     document: String,

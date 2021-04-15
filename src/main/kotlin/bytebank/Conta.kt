@@ -1,3 +1,5 @@
+package bytebank
+
 class Account(
     var ownerName: String,
     val numberAccount: Int,

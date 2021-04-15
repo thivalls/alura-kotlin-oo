@@ -1,9 +1,11 @@
+package bytebank
+
 class Manager(
     name: String,
     document: String,
     salary: Double,
     val password: String
-): Collaborator (name, document, salary) {
+): Collaborator(name, document, salary) {
     override fun bonificacao(): Double {
         return super.bonificacao() + salary
     }
