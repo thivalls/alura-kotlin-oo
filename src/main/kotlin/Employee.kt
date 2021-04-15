@@ -1,9 +1,9 @@
 class Employee(
-    val name: String,
-    val document: String,
-    val salary: Double,
-) {
-    fun bonificacao(): Double {
-        return salary * 0.1
-    }
-}
+    name: String,
+    document: String,
+    salary: Double,
+) : Collaborator(
+    name,
+    document,
+    salary,
+)
