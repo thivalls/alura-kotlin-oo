@@ -1,9 +1,6 @@
 package bytebank.calculator
 
-import bytebank.Collaborator
-import bytebank.Director
-import bytebank.Employee
-import bytebank.Manager
+import bytebank.company.Collaborator
 
 class Calculator {
     var total = 0.0

@@ -1,4 +1,4 @@
-package bytebank
+package bytebank.company
 
 class Employee(
     name: String,

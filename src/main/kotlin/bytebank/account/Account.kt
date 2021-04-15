@@ -1,19 +1,19 @@
 package bytebank
 
-class Account(
+open class Account(
     var ownerName: String,
     val numberAccount: Int,
 ) {
     var balance = 0.0
-        private set
+        protected set
 
     fun deposit(value: Double) {
         balance += value
     }
 
-    fun withDraw(value: Double): Boolean {
+    open fun withDraw(value: Double): Boolean {
         if (balance >= value) {
-            balance -= value
+            balance -= (value + 0.10)
             return true
         }
         return false
@@ -21,6 +21,8 @@ class Account(
 
 
     fun transfer(toAccount: Account, value: Double): Boolean {
+        if(toAccount.numberAccount == numberAccount) return false;
+
         if (balance >= value) {
             balance -= value
             toAccount.deposit(value)

@@ -1,4 +1,4 @@
-package bytebank
+package bytebank.company
 
 open class Collaborator(
     val name: String,

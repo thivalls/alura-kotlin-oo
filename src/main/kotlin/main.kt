@@ -1,41 +1,54 @@
-import bytebank.Director
-import bytebank.Employee
-import bytebank.Manager
-import bytebank.calculator.Calculator
+import bytebank.Account
+import bytebank.account.SalaryAccount
 
 fun main() {
-    val thiago = Director("Thiago", "323232", 5000.0, "zup", 1.3)
-    println("Funcionário ${thiago.name}")
-    println("Bonificação de : ${thiago.bonificacao()}")
-    if(thiago.auth("zup")) {
-        println("Authenticated")
+    println("Bem vindos ao Bytebank!!!")
+
+    // Creating accounts
+    val andre: Account = Account("Andre", 1000);
+    val thiago: Account = SalaryAccount("Thiago", 1001);
+    println("Conta de ${andre.ownerName} criada com sucesso")
+    println("Conta de ${thiago.ownerName} criada com sucesso")
+
+
+    // Depositar
+    andre.deposit(1000.0)
+    thiago.deposit(1000.0)
+
+    // Mostrar saldo após depósito
+    println("${andre.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${andre.balance}")
+    println("${thiago.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
+
+    // Sacar
+    if (andre.withDraw(100.0)) {
+        println(".......Saque realizado com sucesso \n Saldo atual: ${andre.balance}")
     } else {
-        println("Non authenticated")
+        println("### >>> Seu saldo é insuficiente")
     }
-    println("Participação de luco: ${thiago.calcPlr()}")
 
-    println("_______________________________________")
-
-    val andre = Manager("Andre", "323232", 1000.0, "zup")
-    println("Funcionário ${andre.name}")
-    println("Bonificação de : ${andre.bonificacao()}")
-    if(andre.auth("zup")) {
-        println("Authenticated")
+    if (thiago.withDraw(100.0)) {
+        println(".......Saque realizado com sucesso \n Saldo atual: ${thiago.balance}")
     } else {
-        println("Non authenticated")
+        println("xxxxxxx >>> Seu saldo é insuficiente")
     }
 
-    println("_______________________________________")
+    // transferindo
+    if (andre.transfer(thiago, 200.0)) {
+        println(".......Transferência realizada com sucesso. \nSaldo atual: ${andre.balance}")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+    }
 
-    val amanda = Employee("Amanda", "323232", 2000.0)
-    println("Funcionário ${amanda.name}")
-    println("Bonificação de : ${amanda.bonificacao()}")
+    if (thiago.transfer(andre, 50.0)) {
+        println(".......Transferência realizada com sucesso. \n Saldo atual: ${thiago.balance}")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+    }
 
-    println("_______________________________________")
-    println("Calculando total de gastos com premiações entre funcionarios")
-    val calculator = Calculator();
-    calculator.regiter(thiago)
-    calculator.regiter(andre)
-    calculator.regiter(amanda)
-    println(calculator.total)
+    // testando erro de mesma titularidade
+    if (thiago.transfer(thiago, 50.0)) {
+        println(".......Transferência realizada com sucesso.")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+    }
 }
