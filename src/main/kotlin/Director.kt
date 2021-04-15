@@ -2,10 +2,11 @@ class Director(
     name: String,
     document: String,
     salary: Double,
-    val password: String
+    val password: String,
+    val plr: Double
 ): Collaborator (name, document, salary) {
     override fun bonificacao(): Double {
-        return salary * 0.4
+        return super.bonificacao() + salary + calcPlr()
     }
 
     fun auth(password: String): Boolean {
@@ -13,7 +14,7 @@ class Director(
         return false
     }
 
-    fun plr(): Double {
-        return salary * 1.3
+    fun calcPlr(): Double {
+        return salary * plr
     }
 }
