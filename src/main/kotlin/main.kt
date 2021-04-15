@@ -33,7 +33,7 @@ fun main() {
 
     println("_______________________________________")
     println("Calculando total de gastos com premiações entre funcionarios")
-    var calculator = Calculator();
+    val calculator = Calculator();
     calculator.regiter(thiago)
     calculator.regiter(andre)
     calculator.regiter(amanda)
