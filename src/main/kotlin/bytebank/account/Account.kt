@@ -11,14 +11,7 @@ abstract class Account(
         balance += value
     }
 
-    open fun withDraw(value: Double): Boolean {
-        if (balance >= value) {
-            balance -= value
-            return true
-        }
-        return false
-    }
-
+    abstract fun withDraw(value: Double): Boolean
 
     fun transfer(toAccount: Account, value: Double): Boolean {
         if(toAccount.numberAccount == numberAccount) return false;

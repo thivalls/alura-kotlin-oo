@@ -8,4 +8,8 @@ class Employee(
     name,
     document,
     salary,
-)
+) {
+    override fun bonificacao(): Double {
+        return salary * 0.1
+    }
+}

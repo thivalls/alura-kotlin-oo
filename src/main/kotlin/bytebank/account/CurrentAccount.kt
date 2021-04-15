@@ -1,6 +1,6 @@
 package bytebank.account
 
-class SimpleAccount(
+class CurrentAccount(
     ownerName: String,
     numberAccount: Int
 ) : Account(ownerName, numberAccount) {

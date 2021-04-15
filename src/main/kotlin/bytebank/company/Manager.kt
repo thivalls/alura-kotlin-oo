@@ -7,7 +7,7 @@ class Manager(
     val password: String
 ): Collaborator(name, document, salary) {
     override fun bonificacao(): Double {
-        return super.bonificacao() + salary
+        return (salary * 0.1) + salary
     }
 
     fun auth(password: String): Boolean {

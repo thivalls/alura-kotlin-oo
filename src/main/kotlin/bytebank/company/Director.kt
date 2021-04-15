@@ -8,7 +8,7 @@ class Director(
     val plr: Double
 ): Collaborator(name, document, salary) {
     override fun bonificacao(): Double {
-        return super.bonificacao() + salary + calcPlr()
+        return (salary * 0.1) + salary + calcPlr()
     }
 
     fun auth(password: String): Boolean {

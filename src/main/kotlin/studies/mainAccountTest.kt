@@ -1,10 +1,9 @@
-import bytebank.account.Account
 import bytebank.account.SalaryAccount
-import bytebank.account.SimpleAccount
+import bytebank.account.CurrentAccount
 
 fun main() {
     println("Bem vindo ao nosso banco")
-    val account1 = SimpleAccount("Thiago", 1)
+    val account1 = CurrentAccount("Thiago", 1)
     val account2 = SalaryAccount("Thalita", 2)
 
     println("Titular ${account1.ownerName} tem saldo de ${account1.balance}")
