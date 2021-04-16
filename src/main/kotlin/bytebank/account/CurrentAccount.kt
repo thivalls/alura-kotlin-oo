@@ -1,9 +1,9 @@
 package bytebank.account
 
 class CurrentAccount(
-    ownerName: String,
+    client: Client,
     numberAccount: Int
-) : Account(ownerName, numberAccount) {
+) : Account(client, numberAccount) {
 
     override fun withDraw(value: Double): Boolean {
         if (balance >= value) {

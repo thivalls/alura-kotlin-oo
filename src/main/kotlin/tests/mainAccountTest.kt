@@ -1,4 +1,5 @@
 import bytebank.account.Account
+import bytebank.account.Client
 import bytebank.account.SalaryAccount
 import bytebank.account.CurrentAccount
 
@@ -6,10 +7,10 @@ fun main() {
     println("Bem vindos ao Bytebank!!!")
 
     // Creating accounts
-    val andre: Account = CurrentAccount("Andre", 1000);
-    val thiago: Account = SalaryAccount("Thiago", 1001);
-    println("Conta de ${andre.ownerName} criada com sucesso")
-    println("Conta de ${thiago.ownerName} criada com sucesso")
+    val andre: Account = CurrentAccount(Client("Thiago", "","blabla"), 1000);
+    val thiago: Account = SalaryAccount(Client("Andre", "","blabla"), 1001);
+    println("Conta de ${andre.client.name} criada com sucesso")
+    println("Conta de ${thiago.client.name} criada com sucesso")
 
 
     // Depositar
@@ -17,8 +18,8 @@ fun main() {
     thiago.deposit(1000.0)
 
     // Mostrar saldo após depósito
-    println("${andre.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${andre.balance}")
-    println("${thiago.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
+    println("${andre.client.name} seu depósito foi realizado com sucesso. \nSaldo atual: ${andre.balance}")
+    println("${thiago.client.name} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
 
     // Sacar
     if (andre.withDraw(100.0)) {
