@@ -1,11 +1,11 @@
-package studies
+package tests
 
 import bytebank.company.Director
 import bytebank.company.Employee
 import bytebank.company.Manager
 import bytebank.calculator.Calculator
 
-fun main() {
+fun testCollaborators() {
     val thiago = Director("Thiago", "323232", 5000.0, "zup", 1.3)
     println("Funcionário ${thiago.name}")
     println("Bonificação de : ${thiago.bonificacao()}")
