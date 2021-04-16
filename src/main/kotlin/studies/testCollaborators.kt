@@ -9,7 +9,7 @@ fun main() {
     val thiago = Director("Thiago", "323232", 5000.0, "zup", 1.3)
     println("Funcionário ${thiago.name}")
     println("Bonificação de : ${thiago.bonificacao()}")
-    if(thiago.auth("zup")) {
+    if (thiago.auth("zup")) {
         println("Authenticated")
     } else {
         println("Non authenticated")
@@ -21,7 +21,7 @@ fun main() {
     val andre = Manager("Andre", "323232", 1000.0, "zup")
     println("Funcionário ${andre.name}")
     println("Bonificação de : ${andre.bonificacao()}")
-    if(andre.auth("zup")) {
+    if (andre.auth("zup")) {
         println("Authenticated")
     } else {
         println("Non authenticated")

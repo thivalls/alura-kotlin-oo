@@ -1,55 +1,15 @@
+import bytebank.AdminArea
 import bytebank.account.Account
 import bytebank.account.SalaryAccount
 import bytebank.account.CurrentAccount
+import bytebank.company.Director
+import bytebank.company.Manager
 
 fun main() {
-    println("Bem vindos ao Bytebank!!!")
+    val thiago = Director(name = "Thiago Valls Bertolino", document = "32779646802", salary = 5000.0, password = "klapausius", 1.3)
+    val andre = Manager(name = "Thiago Valls Bertolino", document = "32779646802", salary = 5000.0, password = "trinity")
 
-    // Creating accounts
-    val andre: Account = CurrentAccount("Andre", 1000);
-    val thiago: Account = SalaryAccount("Thiago", 1001);
-    println("Conta de ${andre.ownerName} criada com sucesso")
-    println("Conta de ${thiago.ownerName} criada com sucesso")
-
-
-    // Depositar
-    andre.deposit(1000.0)
-    thiago.deposit(1000.0)
-
-    // Mostrar saldo após depósito
-    println("${andre.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${andre.balance}")
-    println("${thiago.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
-
-    // Sacar
-    if (andre.withDraw(100.0)) {
-        println(".......Saque realizado com sucesso \n Saldo atual: ${andre.balance}")
-    } else {
-        println("### >>> Seu saldo é insuficiente")
-    }
-
-    if (thiago.withDraw(100.0)) {
-        println(".......Saque realizado com sucesso \n Saldo atual: ${thiago.balance}")
-    } else {
-        println("xxxxxxx >>> Seu saldo é insuficiente")
-    }
-
-    // transferindo
-    if (andre.transfer(thiago, 200.0)) {
-        println(".......Transferência realizada com sucesso. \nSaldo atual: ${andre.balance}")
-    } else {
-        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
-    }
-
-    if (thiago.transfer(andre, 50.0)) {
-        println(".......Transferência realizada com sucesso. \n Saldo atual: ${thiago.balance}")
-    } else {
-        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
-    }
-
-    // testando erro de mesma titularidade
-    if (thiago.transfer(thiago, 50.0)) {
-        println(".......Transferência realizada com sucesso.")
-    } else {
-        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
-    }
+    val adminArea = AdminArea()
+    adminArea.login(thiago, "klapausius");
+    adminArea.login(andre, "trinity1");
 }

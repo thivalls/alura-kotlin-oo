@@ -1,46 +1,55 @@
+import bytebank.account.Account
 import bytebank.account.SalaryAccount
 import bytebank.account.CurrentAccount
 
 fun main() {
-    println("Bem vindo ao nosso banco")
-    val account1 = CurrentAccount("Thiago", 1)
-    val account2 = SalaryAccount("Thalita", 2)
+    println("Bem vindos ao Bytebank!!!")
 
-    println("Titular ${account1.ownerName} tem saldo de ${account1.balance}")
-    println("Titular ${account2.ownerName} tem saldo de ${account2.balance}")
+    // Creating accounts
+    val andre: Account = CurrentAccount("Andre", 1000);
+    val thiago: Account = SalaryAccount("Thiago", 1001);
+    println("Conta de ${andre.ownerName} criada com sucesso")
+    println("Conta de ${thiago.ownerName} criada com sucesso")
 
-    // depositando
-    println("........Depositando 100 nas duas contas.......")
-    account1.deposit(100.0)
-    account2.deposit(1000.0)
 
-    println("Titular ${account1.ownerName} tem saldo de ${account1.balance}")
-    println("Titular ${account2.ownerName} tem saldo de ${account2.balance}")
+    // Depositar
+    andre.deposit(1000.0)
+    thiago.deposit(1000.0)
 
-    // sacando
-    println("........Sacando 1000 nas duas contas.......")
+    // Mostrar saldo após depósito
+    println("${andre.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${andre.balance}")
+    println("${thiago.ownerName} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
 
-    if (!account1.withDraw(1000.0)) {
-        println("${account1.ownerName} infelizmente seu saldo é insuficiente para realizar este saque")
+    // Sacar
+    if (andre.withDraw(100.0)) {
+        println(".......Saque realizado com sucesso \n Saldo atual: ${andre.balance}")
+    } else {
+        println("### >>> Seu saldo é insuficiente")
     }
 
-    if (!account2.withDraw(1000.0)) {
-        println("${account2.ownerName} infelizmente seu saldo é insuficiente para realizar este saque")
+    if (thiago.withDraw(100.0)) {
+        println(".......Saque realizado com sucesso \n Saldo atual: ${thiago.balance}")
+    } else {
+        println("xxxxxxx >>> Seu saldo é insuficiente")
     }
-
-    println("Titular ${account1.ownerName} tem saldo de ${account1.balance}")
-    println("Titular ${account2.ownerName} tem saldo de ${account2.balance}")
 
     // transferindo
-    println("........Transferindo 200 da conta 1 para a conta 2.......")
-    if (!account1.transfer(account2, 100.0)) {
-        println("${account1.ownerName} infelizmente seu saldo é insuficiente para realizar esta transferência")
-    }
-    println("........Transferindo 300 da conta 2 para a conta 1.......")
-    if (!account2.transfer(account1, 100.0)) {
-        println("${account2.ownerName} infelizmente seu saldo é insuficiente para realizar esta transferência")
+    if (andre.transfer(thiago, 200.0)) {
+        println(".......Transferência realizada com sucesso. \nSaldo atual: ${andre.balance}")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
     }
 
-    println("Titular ${account1.ownerName} tem saldo de ${account1.balance}")
-    println("Titular ${account2.ownerName} tem saldo de ${account2.balance}")
+    if (thiago.transfer(andre, 50.0)) {
+        println(".......Transferência realizada com sucesso. \n Saldo atual: ${thiago.balance}")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+    }
+
+    // testando erro de mesma titularidade
+    if (thiago.transfer(thiago, 50.0)) {
+        println(".......Transferência realizada com sucesso.")
+    } else {
+        println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+    }
 }
