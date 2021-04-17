@@ -1,7 +1,7 @@
 package bytebank.account
 
 abstract class Account(
-    var client: Client,
+    var owner: Client,
     val numberAccount: Int,
 ) {
     var balance = 0.0
