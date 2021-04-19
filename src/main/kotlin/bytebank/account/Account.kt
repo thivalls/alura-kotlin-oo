@@ -1,13 +1,16 @@
 package bytebank.account
 
-var counter: Int = 0;
-
 abstract class Account(
     var owner: Client,
     val numberAccount: Int,
 ) {
     init {
-        counter++
+        Counter.total++
+    }
+
+    companion object Counter {
+        var total: Int = 0
+            private set
     }
 
     var balance = 0.0
