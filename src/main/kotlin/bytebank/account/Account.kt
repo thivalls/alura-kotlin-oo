@@ -1,5 +1,8 @@
 package bytebank.account
 
+import bytebank.exception.InsufficientBalanceException
+import bytebank.exception.MyCustomException
+
 abstract class Account(
     var owner: Client,
     val numberAccount: Int,
@@ -20,16 +23,14 @@ abstract class Account(
         balance += value
     }
 
-    abstract fun withDraw(value: Double): Boolean
+    abstract fun withDraw(value: Double): InsufficientBalanceException?
 
-    fun transfer(toAccount: Account, value: Double): Boolean {
-        if(toAccount.numberAccount == numberAccount) return false;
+    fun transfer(toAccount: Account, value: Double): InsufficientBalanceException? {
+        if(balance < value) throw InsufficientBalanceException("Insufficient balance to transfer")
 
-        if (balance >= value) {
-            balance -= value
-            toAccount.deposit(value)
-            return true
-        }
-        return false
+        balance -= value
+        toAccount.deposit(value)
+
+        return null
     }
 }

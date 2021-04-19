@@ -1,6 +1,7 @@
 import bytebank.account.*
+import bytebank.exception.InsufficientBalanceException
 
-fun main() {
+fun mainAccountTest() {
     println("Bem vindos ao Bytebank!!!")
 
     // Creating accounts
@@ -19,35 +20,47 @@ fun main() {
     println("${thiago.owner.name} seu depósito foi realizado com sucesso. \nSaldo atual: ${thiago.balance}")
 
     // Sacar
-    if (andre.withDraw(100.0)) {
+    try {
+        andre.withDraw(100.0)
         println(".......Saque realizado com sucesso \n Saldo atual: ${andre.balance}")
-    } else {
+    } catch (e: InsufficientBalanceException) {
         println("### >>> Seu saldo é insuficiente")
+        //e.printStackTrace()
     }
 
-    if (thiago.withDraw(100.0)) {
+
+    try {
+        thiago.withDraw(100.0)
         println(".......Saque realizado com sucesso \n Saldo atual: ${thiago.balance}")
-    } else {
+    } catch (e: InsufficientBalanceException) {
         println("xxxxxxx >>> Seu saldo é insuficiente")
+        //e.printStackTrace()
     }
 
     // transferindo
-    if (andre.transfer(thiago, 200.0)) {
+    try {
+        andre.transfer(thiago, 4200.0)
         println(".......Transferência realizada com sucesso. \nSaldo atual: ${andre.balance}")
-    } else {
+    } catch(e: InsufficientBalanceException) {
         println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+        //e.printStackTrace()
     }
 
-    if (thiago.transfer(andre, 50.0)) {
+    try {
+        thiago.transfer(andre, 50.0)
         println(".......Transferência realizada com sucesso. \n Saldo atual: ${thiago.balance}")
-    } else {
+    } catch(e: InsufficientBalanceException) {
         println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+       // e.printStackTrace()
     }
 
     // testando erro de mesma titularidade
-    if (thiago.transfer(thiago, 50.0)) {
+    try {
+        thiago.transfer(thiago, 50.0)
         println(".......Transferência realizada com sucesso.")
-    } else {
+    } catch (e: InsufficientBalanceException) {
         println("xxxxxxx >>> Saldo insuficiente ou transferência entre mesma titularidade")
+        e.printStackTrace()
     }
+
 }
