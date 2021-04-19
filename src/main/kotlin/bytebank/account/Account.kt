@@ -1,9 +1,15 @@
 package bytebank.account
 
+var counter: Int = 0;
+
 abstract class Account(
     var owner: Client,
     val numberAccount: Int,
 ) {
+    init {
+        counter++
+    }
+
     var balance = 0.0
         protected set
 
