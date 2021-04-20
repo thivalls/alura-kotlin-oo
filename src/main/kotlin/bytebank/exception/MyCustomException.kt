@@ -1,3 +1,3 @@
 package bytebank.exception
 
-class MyCustomException: Exception("message default")
+class MyCustomException(message: String = "") : Exception(message)
